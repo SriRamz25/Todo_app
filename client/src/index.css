@@ -1,0 +1,69 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+* {
+  font-family: "Inter", sans-serif;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #ffffff;
+}
+
+/* Custom dialog overlay */
+[data-radix-collection-item] {
+  outline: none;
+}
+
+/* Progress bar animation */
+@keyframes progressFill {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+.progress-bar {
+  transform-origin: left;
+  animation: progressFill 0.8s ease-out;
+}
+
+/* Todo card hover effects */
+.todo-card:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Dropdown menu styling */
+[data-radix-dropdown-menu-content] {
+  background: white !important;
+  border: 1px solid #e5e7eb !important;
+  border-radius: 8px !important;
+  padding: 4px !important;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05) !important;
+}
+
+[data-radix-dropdown-menu-item] {
+  padding: 8px 12px !important;
+  border-radius: 6px !important;
+  color: #374151 !important;
+  font-size: 14px !important;
+  cursor: pointer !important;
+  transition: background-color 0.15s ease !important;
+}
+
+[data-radix-dropdown-menu-item]:hover {
+  background-color: #f3f4f6 !important;
+}
+
+[data-radix-dropdown-menu-item][data-variant="destructive"] {
+  color: #dc2626 !important;
+}
+
+[data-radix-dropdown-menu-item][data-variant="destructive"]:hover {
+  background-color: #fef2f2 !important;
+}
