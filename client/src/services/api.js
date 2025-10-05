@@ -1,12 +1,8 @@
 import axios from "axios";
 
-// Base URL for your backend API.
-// Use Vite environment variable VITE_API_BASE_URL when available so the
-// deployed site (e.g. Netlify) can point to the production backend.
-// Vite exposes env vars under `import.meta.env` when prefixed with `VITE_`.
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:5000/api";
+const API_BASE_URL =
+  import.meta.env.VITE_API_BASE_URL || "http://localhost:5000/api";
 
-// Create axios instance with default config
 const api = axios.create({
   baseURL: API_BASE_URL,
   headers: {
@@ -15,9 +11,7 @@ const api = axios.create({
   timeout: 10000, // 10 seconds timeout
 });
 
-// API service functions
 export const todoAPI = {
-  // Get all todos
   getTodos: async (filters = {}) => {
     try {
       const params = new URLSearchParams();
@@ -34,7 +28,6 @@ export const todoAPI = {
     }
   },
 
-  // Create new todo
   createTodo: async (todoData) => {
     try {
       const response = await api.post("/todos", {
@@ -50,7 +43,6 @@ export const todoAPI = {
     }
   },
 
-  // Update todo
   updateTodo: async (id, updates) => {
     try {
       const response = await api.put(`/todos/${id}`, updates);
@@ -61,7 +53,6 @@ export const todoAPI = {
     }
   },
 
-  // Toggle todo completion
   toggleTodo: async (id, completed) => {
     try {
       const response = await api.put(`/todos/${id}`, {
@@ -75,7 +66,6 @@ export const todoAPI = {
     }
   },
 
-  // Delete todo
   deleteTodo: async (id) => {
     try {
       const response = await api.delete(`/todos/${id}`);
@@ -86,7 +76,6 @@ export const todoAPI = {
     }
   },
 
-  // Update todo priority
   updatePriority: async (id, priority) => {
     try {
       const response = await api.put(`/todos/${id}`, { priority });
@@ -99,7 +88,6 @@ export const todoAPI = {
     }
   },
 
-  // Health check
   healthCheck: async () => {
     try {
       const response = await api.get("/health");
@@ -111,7 +99,6 @@ export const todoAPI = {
   },
 };
 
-// Request interceptor for logging
 api.interceptors.request.use(
   (config) => {
     console.log(
@@ -125,7 +112,6 @@ api.interceptors.request.use(
   }
 );
 
-// Response interceptor for error handling
 api.interceptors.response.use(
   (response) => {
     console.log(`Response received:`, response.status, response.statusText);
