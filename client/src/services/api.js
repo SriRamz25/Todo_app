@@ -1,7 +1,10 @@
-import axios from "axios";
++import axios from "axios";
 
-// Base URL for your backend API
-const API_BASE_URL = "http://localhost:5000/api";
+// Base URL for your backend API.
+// Use Vite environment variable VITE_API_BASE_URL when available so the
+// deployed site (e.g. Netlify) can point to the production backend.
+// Vite exposes env vars under `import.meta.env` when prefixed with `VITE_`.
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:5000/api";
 
 // Create axios instance with default config
 const api = axios.create({
